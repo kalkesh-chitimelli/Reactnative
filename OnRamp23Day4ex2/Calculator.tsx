@@ -24,14 +24,16 @@ function Calculator(props: Icalculator){
     const [currentValue, setCurrentValue] = useState<string>('');
     //const [disableValue, setDisableValue] = useState<Boolean>(false);
     const [firstOperand, setFirstOperand] = useState<string>('')
-    const [result,setResult] = useState<Number>(0);
+    const [result,setResult] = useState<Number>(0)
     const [operator,setOperator] = useState<string>('')
+    const [currentExp,setCurrentExp] = useState<string>('')
 
     const setValue=(value: string)=> {
        if (value === 'Reset')
        {
         setCurrentValue('');
         setResult(0);
+        setCurrentExp('');
        }
 
        else if (value === 'Back')
@@ -44,6 +46,7 @@ function Calculator(props: Icalculator){
 
             setFirstOperand(currentValue);
             setOperator(value);
+            setCurrentExp(currentValue+value);
             setCurrentValue('');
 
        } 
@@ -53,24 +56,28 @@ function Calculator(props: Icalculator){
         switch(operator){
 
         case '+' :{
+            setCurrentExp(currentExp+currentValue);
             setResult(props.addFunction(Number(firstOperand),Number(currentValue)));
             setFirstOperand('');
             setCurrentValue('');
             break;
         }
         case '-' :{
+            setCurrentExp(currentExp+currentValue);
             setResult(props.subFunction(Number(firstOperand),Number(currentValue)));
             setFirstOperand('');
             setCurrentValue('');
             break;
         }
         case '*' :{
+            setCurrentExp(currentExp+currentValue);
             setResult(props.multiplyFunction(Number(firstOperand),Number(currentValue)));
             setFirstOperand('');
             setCurrentValue('');
             break;
         }
         case '/' :{
+            setCurrentExp(currentExp+currentValue);
             setResult(props.divFunction(Number(firstOperand),Number(currentValue)));
             setFirstOperand('');
             setCurrentValue('');
@@ -108,6 +115,7 @@ function Calculator(props: Icalculator){
         
         <View >
             <Text style={styles.title}>Calculator</Text>
+            <Text style={styles.output}>Current Expression:{currentExp}</Text>
             <Text style={styles.output}>Disp: {currentValue}</Text>
             <Text style={styles.output}>Result:{String(result)}</Text>
             
