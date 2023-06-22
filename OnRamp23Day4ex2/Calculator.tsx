@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, FlatList, SafeAreaView, StyleSheet, Text,TextInput,View,TouchableOpacity } from "react-native";
 
 interface Icalculator{
@@ -27,6 +27,12 @@ function Calculator(props: Icalculator){
     const [result,setResult] = useState<Number>(0)
     const [operator,setOperator] = useState<string>('')
     const [currentExp,setCurrentExp] = useState<string>('')
+
+    useEffect(()=>{
+        setCurrentValue(result+'')
+    },[result])
+
+
 
     const setValue=(value: string)=> {
        if (value === 'Reset')
