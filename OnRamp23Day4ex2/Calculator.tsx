@@ -159,7 +159,8 @@ const styles = StyleSheet.create({
         color:'red',
         backgroundColor:'pink',
         fontWeight:'bold',
-        fontSize:20
+        fontSize:20,
+        borderWidth:10
     },
     title: {
         backgroundColor:'blue',
