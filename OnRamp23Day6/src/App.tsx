@@ -6,11 +6,14 @@
  */
 
 import React,{useState} from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
   Alert,
   Button,
   Image,
   SafeAreaView,
+  Settings,
   StyleSheet,
   Text,
   TextInput,
@@ -19,32 +22,26 @@ import {
 
 import Register from './register';
 import Login from './login';
+import Home from './home';
+import Settingspage from './settings';
 
 
 
 function App() {
   
-
-const[visibleModal,setModalVisible] = useState(false);
-const login=()=>{
-setModalVisible(true);
-}
-const registerFunc=()=>{
-  setModalVisible(false);
-}
-
-const next=()=>{
-  Alert.alert('Components are Yet to be Develop!!!');
-}
-
-const exit=()=>{
-  Alert.alert('Thank You!!!')
-}
+const Stack = createNativeStackNavigator();
 
   return (
     
-    <><Register login={login} Exit={exit} Next={next} />
-    <Login Register={registerFunc} modalVisible={visibleModal} Exit={exit} Next={next}/></>
+    <NavigationContainer>
+       <Stack.Navigator>
+          <Stack.Screen name="Register" component={Register} options={{ title: 'Day-6' }}/>
+          <Stack.Screen name="Login" component={Login} options={{ title: 'Day-6' }}/>
+          <Stack.Screen name="Home" component={Home} options={{ title: 'Day-6' }}/>
+          <Stack.Screen name="Settings" component={Settingspage} options={{ title: 'Day-6' }}/>
+       </Stack.Navigator>
+      
+    </NavigationContainer>
     
     
   );
