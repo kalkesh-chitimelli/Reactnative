@@ -19,7 +19,7 @@ function Login({ navigation } : any) {
     const next = ()=>{
 
         if ( mobile !==''){
-            navigation.navigate('Home')
+            navigation.navigate('Home',{name:{mobile}})
         }
         else{
             Alert.alert('Kindly Enter your Monile number!!!')
